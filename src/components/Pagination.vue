@@ -12,7 +12,7 @@
         v-for="page in pages.total_pages"
         :key="page + 'page'"
       >
-        <a class="page-link" href="#" @click="$emit('get-product', page)">{{
+        <a class="page-link" href="#" @click.prevent="$emit('get-product', page)">{{
           page
         }}</a>
       </li>
