@@ -37,6 +37,10 @@ const routes = [
     }]
   },
   {
+    path: '/login',
+    component: () => import('../views/Login.vue')
+  },
+  {
     path: '/admin',
     component: () => import('../views/DashBoardView.vue'),
     children: [{

@@ -369,6 +369,7 @@ export default {
       this.$http
         .post(url, { data: order })
         .then((response) => {
+          console.log(response)
           alert(response.data.message)
           this.$refs.form.resetForm()
           this.form.message = ''
