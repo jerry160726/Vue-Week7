@@ -49,20 +49,11 @@
     </table>
     <pagination :pages="pagination" @get-product="getProducts"></pagination>
   </div>
-  <div
-    id="productModal"
-    ref="productModal"
-    class="modal fade"
-    tabindex="-1"
-    aria-labelledby="productModalLabel"
-    aria-hidden="true"
-  >
     <product-modal
       :temp-product="tempProduct"
       :is-new="isNew"
       v-on:get-products="getProducts"
     ></product-modal>
-  </div>
 
   <div
     id="delProductModal"
@@ -107,7 +98,7 @@ export default {
       )
       // eslint-disable-next-line dot-notation
       this.$http.defaults.headers.common['Authorization'] = token
-      console.log(token)
+      // console.log(token)
 
       const url = `${process.env.VUE_APP_API}api/user/check`
       this.$http.post(url).then(() => {
