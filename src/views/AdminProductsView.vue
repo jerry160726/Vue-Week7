@@ -53,6 +53,7 @@
       :temp-product="tempProduct"
       :is-new="isNew"
       v-on:get-products="getProducts"
+      ref="productModal"
     ></product-modal>
 
   <div
