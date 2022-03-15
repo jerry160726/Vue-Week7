@@ -122,11 +122,11 @@ export default {
         this.tempProduct = {
           imagesUrl: []
         }
-        productModal.show()
+        this.$refs.productModal.bsModal.show()
         this.isNew = true
       } else if (status === 'edit') {
         this.tempProduct = { ...product } // 淺拷貝, 因為傳參考
-        productModal.show()
+        this.$refs.productModal.bsModal.show()
         this.isNew = false
       } else if (status === 'delete') {
         // delProductModal.show()
