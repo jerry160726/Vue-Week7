@@ -80,9 +80,10 @@
 </template>
 
 <script>
+import bootstrap from 'bootstrap'
 import pagination from '@/components/Pagination.vue'
 import productModal from '@/components/AdminProductModal'
-// import bootstrap from 'bootstrap'
+import delProductModal from '@/components/AdminDelProductModal'
 
 export default {
   components: {
@@ -101,7 +102,10 @@ export default {
   },
   methods: {
     checkLogin () {
-      const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/, '$1')
+      const token = document.cookie.replace(
+        /(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/,
+        '$1'
+      )
       // eslint-disable-next-line dot-notation
       this.$http.defaults.headers.common['Authorization'] = token
       console.log(token)
@@ -135,17 +139,17 @@ export default {
         productModal.show()
         this.isNew = false
       } else if (status === 'delete') {
-        // delProductModal.show()
+        delProductModal.show()
         this.tempProduct = { ...product } // 淺拷貝, 因為傳參考
       }
     }
   },
   mounted () {
     this.checkLogin()
-    // productModal = new bootstrap.Modal(document.getElementById('productModal'))
-    // delProductModal = new bootstrap.Modal(
-    //   document.getElementById('delProductModal')
-    // )
+    productModal = new bootstrap.Modal(document.getElementById('productModal'))
+    delProductModal = new bootstrap.Modal(
+      document.getElementById('delProductModal')
+    )
   }
 }
 </script>
