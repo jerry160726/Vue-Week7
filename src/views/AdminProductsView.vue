@@ -82,7 +82,7 @@
 <script>
 import pagination from '@/components/Pagination.vue'
 import productModal from '@/components/AdminProductModal'
-import bootstrap from 'bootstrap'
+// import bootstrap from 'bootstrap'
 
 export default {
   components: {
@@ -101,11 +101,9 @@ export default {
   },
   methods: {
     checkLogin () {
-      const token = document.cookie.replace(
-        /(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/,
-        '$1'
-      )
-      this.$http.defaults.headers.common.Authorization = token
+      const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/, '$1')
+      // eslint-disable-next-line dot-notation
+      this.$http.defaults.headers.common['Authorization'] = token
       console.log(token)
 
       const url = `${process.env.VUE_APP_API}api/user/check`
@@ -144,7 +142,7 @@ export default {
   },
   mounted () {
     this.checkLogin()
-    productModal = new bootstrap.Modal(document.getElementById('productModal'))
+    // productModal = new bootstrap.Modal(document.getElementById('productModal'))
     // delProductModal = new bootstrap.Modal(
     //   document.getElementById('delProductModal')
     // )
