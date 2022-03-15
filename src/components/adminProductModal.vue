@@ -201,6 +201,7 @@
 </template>
 
 <script>
+import Modal from 'bootstrap/js/dist/modal'
 const productModal = {}
 
 export default {
@@ -234,6 +235,9 @@ export default {
           productModal.hide()
         })
     }
+  },
+  mounted () {
+    this.bsModal = new Modal(this.$refs.productModal)
   }
 }
 </script>
