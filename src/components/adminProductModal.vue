@@ -207,7 +207,7 @@ export default {
         method = 'put'
       } // 如果是編輯的話 就代id並改成put
 
-      axios[method](url, { data: this.tempProduct }) // 資料的格式要參照api的格式
+      this.$http[method](url, { data: this.tempProduct }) // 資料的格式要參照api的格式
         .then((res) => {
           console.log(res)
           // this.getProducts();  //沒有get Product (外層方法)
