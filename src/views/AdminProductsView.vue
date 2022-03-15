@@ -82,7 +82,7 @@
 <script>
 import pagination from '@/components/Pagination.vue'
 import productModal from '@/components/AdminProductModal'
-import bootstrap from 'bootstrap/scss/bootstrap'
+import bootstrap from 'bootstrap'
 
 export default {
   components: {

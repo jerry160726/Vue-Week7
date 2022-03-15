@@ -45,11 +45,11 @@ const routes = [
     component: () => import('../views/DashBoardView.vue'),
     children: [{
       path: 'products',
-      component: () => import('../views/AdminProducts.vue')
+      component: () => import('../views/AdminProductsView.vue')
     },
     {
       path: 'orders',
-      component: () => import('../views/AdminOrders.vue')
+      component: () => import('../views/AdminOrdersView.vue')
     }]
   }
 ]
