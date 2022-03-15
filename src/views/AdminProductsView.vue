@@ -80,16 +80,14 @@
 </template>
 
 <script>
-import bootstrap from 'bootstrap'
+import Modal from 'bootstrap/js/dist/modal'
 import pagination from '@/components/Pagination.vue'
 import productModal from '@/components/AdminProductModal'
-import delProductModal from '@/components/AdminDelProductModal'
 
 export default {
   components: {
     pagination,
-    productModal,
-    delProductModal
+    productModal
   },
   data () {
     return {
@@ -121,7 +119,7 @@ export default {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products/?page=${page}` // 參數預設值
 
       this.$http.get(url).then((res) => {
-        console.log(res)
+        // console.log(res)
         // console.log(res.data.products)
         this.products = res.data.products
         this.pagination = res.data.pagination // 撈出分頁資料
@@ -140,16 +138,15 @@ export default {
         productModal.show()
         this.isNew = false
       } else if (status === 'delete') {
-        delProductModal.show()
+        // delProductModal.show()
         this.tempProduct = { ...product } // 淺拷貝, 因為傳參考
       }
     }
   },
   mounted () {
     this.checkLogin()
-    productModal = new bootstrap.Modal(document.getElementById('productModal'))
-    delProductModal = new bootstrap.Modal(document.getElementById('delProductModal')
-    )
+    this.modal = new Modal(document.getElementById('productModal'))
+    // delProductModal = new Modal(document.getElementById('delProductModal'))
   }
 }
 </script>
