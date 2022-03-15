@@ -197,6 +197,16 @@ const productModal = {}
 export default {
   props: ['tempProduct', 'isNew'],
   template: '#templateForProductModal',
+  data () {
+    return {
+      product: {}
+    }
+  },
+  watch: {
+    tempProduct () {
+      this.product = this.tempProduct
+    }
+  },
   methods: {
     updateProduct () {
       let url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`
