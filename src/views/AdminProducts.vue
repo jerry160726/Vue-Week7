@@ -81,10 +81,13 @@
 
 <script>
 import pagination from '@/components/Pagination.vue'
+import productModal from '@/components/AdminProductModal'
+import bootstrap from 'bootstrap/scss/bootstrap'
 
 export default {
   components: {
-    pagination
+    pagination,
+    productModal
   },
   data () {
     return {
@@ -127,11 +130,11 @@ export default {
         this.tempProduct = {
           imagesUrl: []
         }
-        // productModal.show()
+        productModal.show()
         this.isNew = true
       } else if (status === 'edit') {
         this.tempProduct = { ...product } // 淺拷貝, 因為傳參考
-        // productModal.show()
+        productModal.show()
         this.isNew = false
       } else if (status === 'delete') {
         // delProductModal.show()
@@ -141,7 +144,7 @@ export default {
   },
   mounted () {
     this.checkLogin()
-    // productModal = new bootstrap.Modal(document.getElementById('productModal'))
+    productModal = new bootstrap.Modal(document.getElementById('productModal'))
     // delProductModal = new bootstrap.Modal(
     //   document.getElementById('delProductModal')
     // )
