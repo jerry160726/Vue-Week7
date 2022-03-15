@@ -22,28 +22,28 @@
                 type="text"
                 class="form-control"
                 id="imageUrl"
-                v-model="tempProduct.imageUrl"
+                v-model="product.imageUrl"
               />
-              <img :src="tempProduct.imageUrl" class="img-fluid" alt="" />
+              <img :src="product.imageUrl" class="img-fluid" alt="" />
 
               <div class="mb-3">
                 <h3>多圖新增</h3>
-                <div v-if="Array.isArray(tempProduct.imagesUrl)">
+                <div v-if="Array.isArray(product.imagesUrl)">
                   是不是Array
                   <!-- 用這段語法判斷時不是陣列 (沒有陣列這個型別!) -->
 
                   <!-- Key為唯一值 加個隨意的 template幫助辨識 -->
                   <template
-                    v-for="(img, key) in tempProduct.imagesUrl"
+                    v-for="(img, key) in product.imagesUrl"
                     :key="key + '12345'"
                   >
                     <input
                       type="text"
                       class="form-control"
-                      v-model="tempProduct.imagesUrl[key]"
+                      v-model="product.imagesUrl[key]"
                     />
                     <img
-                      :src="tempProduct.imagesUrl[key]"
+                      :src="product.imagesUrl[key]"
                       class="img-fluid"
                       alt=""
                     />
@@ -52,12 +52,12 @@
                   <!-- 前面判斷陣列的長度 後面判斷陣列內有無文字(陣列長度-1) -->
                   <button
                     v-if="
-                      !tempProduct.imagesUrl.length ||
-                      tempProduct.imagesUrl[tempProduct.imagesUrl.length - 1]
+                      !product.imagesUrl.length ||
+                      product.imagesUrl[product.imagesUrl.length - 1]
                     "
                     type="button"
                     class="btn btn-primary w-100"
-                    @click="tempProduct.imagesUrl.push('')"
+                    @click="product.imagesUrl.push('')"
                   >
                     ADD
                   </button>
@@ -65,7 +65,7 @@
                     v-else
                     type="button"
                     class="btn btn-outline-danger w-100"
-                    @click="tempProduct.imagesUrl.pop()"
+                    @click="product.imagesUrl.pop()"
                   >
                     DELETE
                   </button>
@@ -78,7 +78,7 @@
               <label for="title" class="form-label">標題</label>
               <input
                 id="title"
-                v-model="tempProduct.title"
+                v-model="product.title"
                 type="text"
                 class="form-control"
                 placeholder="請輸入標題"
@@ -90,7 +90,7 @@
                 <label for="category" class="form-label">分類</label>
                 <input
                   id="category"
-                  v-model="tempProduct.category"
+                  v-model="product.category"
                   type="text"
                   class="form-control"
                   placeholder="請輸入分類"
@@ -100,7 +100,7 @@
                 <label for="price" class="form-label">單位</label>
                 <input
                   id="unit"
-                  v-model="tempProduct.unit"
+                  v-model="product.unit"
                   type="text"
                   class="form-control"
                   placeholder="請輸入單位"
@@ -113,7 +113,7 @@
                 <label for="origin_price" class="form-label">原價</label>
                 <input
                   id="origin_price"
-                  v-model.number="tempProduct.origin_price"
+                  v-model.number="product.origin_price"
                   type="number"
                   min="0"
                   class="form-control"
@@ -124,7 +124,7 @@
                 <label for="price" class="form-label">售價</label>
                 <input
                   id="price"
-                  v-model.number="tempProduct.price"
+                  v-model.number="product.price"
                   type="number"
                   min="0"
                   class="form-control"
@@ -138,7 +138,7 @@
               <label for="description" class="form-label">產品描述</label>
               <textarea
                 id="description"
-                v-model="tempProduct.description"
+                v-model="product.description"
                 type="text"
                 class="form-control"
                 placeholder="請輸入產品描述"
@@ -149,7 +149,7 @@
               <label for="content" class="form-label">說明內容</label>
               <textarea
                 id="description"
-                v-model="tempProduct.content"
+                v-model="product.content"
                 type="text"
                 class="form-control"
                 placeholder="請輸入說明內容"
@@ -160,7 +160,7 @@
               <div class="form-check">
                 <input
                   id="is_enabled"
-                  v-model="tempProduct.is_enabled"
+                  v-model="product.is_enabled"
                   class="form-check-input"
                   type="checkbox"
                   :true-value="1"
