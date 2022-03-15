@@ -209,7 +209,8 @@ export default {
   template: '#templateForProductModal',
   data () {
     return {
-      product: {}
+      product: {},
+      bsModal: {}
     }
   },
   watch: {
