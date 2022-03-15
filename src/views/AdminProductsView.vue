@@ -72,7 +72,6 @@
 </template>
 
 <script>
-import Modal from 'bootstrap/js/dist/modal'
 import pagination from '@/components/Pagination.vue'
 import productModal from '@/components/AdminProductModal'
 
@@ -137,7 +136,6 @@ export default {
   },
   mounted () {
     this.checkLogin()
-    this.productModal = new Modal(document.getElementById('productModal'))
     // delProductModal = new Modal(document.getElementById('delProductModal'))
   }
 }
