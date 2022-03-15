@@ -88,7 +88,8 @@ import delProductModal from '@/components/AdminDelProductModal'
 export default {
   components: {
     pagination,
-    productModal
+    productModal,
+    delProductModal
   },
   data () {
     return {
@@ -147,8 +148,7 @@ export default {
   mounted () {
     this.checkLogin()
     productModal = new bootstrap.Modal(document.getElementById('productModal'))
-    delProductModal = new bootstrap.Modal(
-      document.getElementById('delProductModal')
+    delProductModal = new bootstrap.Modal(document.getElementById('delProductModal')
     )
   }
 }
