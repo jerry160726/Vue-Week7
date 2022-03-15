@@ -145,7 +145,7 @@ export default {
   },
   mounted () {
     this.checkLogin()
-    this.modal = new Modal(document.getElementById('productModal'))
+    this.productModal = new Modal(document.getElementById('productModal'))
     // delProductModal = new Modal(document.getElementById('delProductModal'))
   }
 }
