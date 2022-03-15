@@ -197,16 +197,6 @@ const productModal = {}
 export default {
   props: ['tempProduct', 'isNew'],
   template: '#templateForProductModal',
-  data () {
-    return {
-      products: [],
-      tempProduct: {
-        imagesUrl: []
-      },
-      isNew: false, // 新增編輯需要用到的狀態判斷
-      pagination: {} // 分頁的資料
-    }
-  },
   methods: {
     updateProduct () {
       let url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`
@@ -217,7 +207,7 @@ export default {
         method = 'put'
       } // 如果是編輯的話 就代id並改成put
 
-      this.$http[method](url, { data: this.tempProduct }) // 資料的格式要參照api的格式
+      axios[method](url, { data: this.tempProduct }) // 資料的格式要參照api的格式
         .then((res) => {
           console.log(res)
           // this.getProducts();  //沒有get Product (外層方法)
