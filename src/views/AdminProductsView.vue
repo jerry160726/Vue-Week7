@@ -81,8 +81,8 @@
 
 <script>
 import Modal from 'bootstrap/js/dist/modal'
-import pagination from '@/components/Pagination.vue'
 import productModal from '@/components/AdminProductModal'
+import pagination from '@/components/Pagination.vue'
 
 export default {
   components: {
