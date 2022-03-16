@@ -52,29 +52,29 @@ export default {
     data () {
       return {
         product: {},
-        dsModal: {}
+        bsModal: {}
       }
     },
-    watch: {
-      tempProduct () {
-        this.product = this.tempProduct
-      }
-    },
+    // watch: {
+    //   tempProduct () {
+    //     this.product = this.tempProduct
+    //   }
+    // },
     delProduct () {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`
 
       this.$http
         .delete(url) // 資料的格式要參照api的格式
         .then((res) => {
-          // console.log(res)
+          console.log(res)
           // this.getProducts();
           this.$emit('get-products')
-          this.dsModal.hide()
+          this.bsModal.hide()
         })
     }
   },
   mounted () {
-    this.dsModal = new Modal(this.$refs.productModal)
+    this.bsModal = new Modal(this.$refs.delProductModal)
   }
 }
 </script>

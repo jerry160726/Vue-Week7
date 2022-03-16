@@ -123,7 +123,7 @@ export default {
         this.isNew = false
       } else if (status === 'delete') {
         // delProductModal.show()
-        this.$refs.delProductModal.dsModal.show()
+        this.$refs.delProductModal.bsModal.show()
         this.tempProduct = { ...product } // 淺拷貝, 因為傳參考
       }
     }

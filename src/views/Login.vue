@@ -41,6 +41,9 @@
   </div>
 </template>
 
+<style lang="scss" src="../assets/stylesheets/login.scss">
+</style>
+
 <script>
 export default {
   data () {
@@ -58,7 +61,8 @@ export default {
         .post(url, this.user)
         .then((res) => {
           const { token, expired } = res.data
-          // console.log(token, expired);
+          console.log(token, expired)
+          console.log(res)
           document.cookie = `hexToken=${token}; expires=${new Date(expired)};`
           this.$router.push('/admin/products')
         })
