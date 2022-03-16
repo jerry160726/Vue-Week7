@@ -49,36 +49,29 @@
     </table>
     <pagination :pages="pagination" @get-product="getProducts"></pagination>
   </div>
-    <product-modal
-      :temp-product="tempProduct"
-      :is-new="isNew"
-      v-on:get-products="getProducts"
-      ref="productModal"
-    ></product-modal>
-
-  <div
-    id="delProductModal"
+  <product-modal
+    :temp-product="tempProduct"
+    :is-new="isNew"
+    v-on:get-products="getProducts"
+    ref="productModal"
+  ></product-modal>
+  <del-product-modal
+    :temp-product="tempProduct"
+    v-on:get-products="getProducts"
     ref="delProductModal"
-    class="modal fade"
-    tabindex="-1"
-    aria-labelledby="delProductModalLabel"
-    aria-hidden="true"
-  >
-    <del-product-modal
-      :temp-product="tempProduct"
-      v-on:get-products="getProducts"
-    ></del-product-modal>
-  </div>
+  ></del-product-modal>
 </template>
 
 <script>
 import pagination from '@/components/Pagination.vue'
 import productModal from '@/components/AdminProductModal'
+import delProductModal from '@/components/AdminDelProductModal'
 
 export default {
   components: {
     pagination,
-    productModal
+    productModal,
+    delProductModal
   },
   data () {
     return {
@@ -130,13 +123,13 @@ export default {
         this.isNew = false
       } else if (status === 'delete') {
         // delProductModal.show()
+        this.$refs.delProductModal.dsModal.show()
         this.tempProduct = { ...product } // 淺拷貝, 因為傳參考
       }
     }
   },
   mounted () {
     this.checkLogin()
-    // delProductModal = new Modal(document.getElementById('delProductModal'))
   }
 }
 </script>

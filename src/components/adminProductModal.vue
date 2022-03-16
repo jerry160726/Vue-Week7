@@ -202,7 +202,7 @@
 
 <script>
 import Modal from 'bootstrap/js/dist/modal'
-const productModal = {}
+// const productModal = {}
 
 export default {
   props: ['tempProduct', 'isNew'],
@@ -230,10 +230,10 @@ export default {
 
       this.$http[method](url, { data: this.tempProduct }) // 資料的格式要參照api的格式
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           // this.getProducts();  //沒有get Product (外層方法)
           this.$emit('get-products')
-          productModal.hide()
+          this.bsModal.hide()
         })
     }
   },
