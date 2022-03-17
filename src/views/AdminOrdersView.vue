@@ -111,8 +111,6 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          // console.log(res)
-          // console.log(res.data.orders)
           this.orders = res.data.orders
         })
         .catch((err) => {
