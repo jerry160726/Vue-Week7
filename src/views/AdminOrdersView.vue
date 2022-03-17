@@ -1,3 +1,136 @@
 <template>
-  <h2>後台訂單</h2>
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th>購買時間</th>
+        <th>Email</th>
+        <th>購買款項</th>
+        <th>應付金額</th>
+        <th>是否付款</th>
+        <th>編輯</th>
+      </tr>
+    </thead>
+    <tbody>
+      <template v-for="item in orders" :key="item.id">
+        <tr v-if="orders.length" :class="{ 'text-secondary': !item.is_paid }">
+          <td>{{ item.create_at }}</td>
+          <td><span v-text="item.user.email" v-if="item.user"></span></td>
+          <td>
+            <ul class="list-unstyled">
+              <li v-for="(product, i) in item.products" :key="i">
+                {{ product.product.title }} 數量：{{ product.qty }}
+                {{ product.product.unit }}
+              </li>
+            </ul>
+          </td>
+          <td class="text-right">{{ item.total }}</td>
+          <td>
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                :id="`paidSwitch${item.id}`"
+                v-model="item.is_paid"
+                @change="updatePaid(item)"
+              />
+              <label class="form-check-label" :for="`paidSwitch${item.id}`">
+                <span v-if="item.is_paid">已付款</span>
+                <span v-else>未付款</span>
+              </label>
+            </div>
+          </td>
+          <td>
+            <div class="btn-group">
+              <button
+                class="btn btn-outline-primary btn-sm"
+                type="button"
+                @click="openModal(item)"
+              >
+                檢視
+              </button>
+              <button
+                class="btn btn-outline-danger btn-sm"
+                type="button"
+                @click="openDelOrderModal(item)"
+              >
+                刪除
+              </button>
+            </div>
+          </td>
+        </tr>
+      </template>
+    </tbody>
+  </table>
+  <order-modal
+    :temp-order="tempOrder"
+    v-on:get-orders="getOrders"
+    ref="orderModal"
+  ></order-modal>
+  <del-order-modal
+    :temp-order="tempOrder"
+    v-on:get-orders="getOrders"
+    ref="delOrderModal"
+  ></del-order-modal>
 </template>
+
+<script>
+// import pagination from '@/components/Pagination.vue'
+import orderModal from '@/components/AdminOrdersModal.vue'
+import delOrderModal from '@/components/AdminDelOrdersModal.vue'
+
+export default {
+  components: {
+    orderModal,
+    delOrderModal
+  },
+  data () {
+    return {
+      orders: [],
+      tempOrder: {}
+    }
+  },
+  methods: {
+    checkLogin () {
+      const token = document.cookie.replace(
+        /(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/,
+        '$1'
+      )
+      // eslint-disable-next-line dot-notation
+      this.$http.defaults.headers.common['Authorization'] = token
+      // console.log(token)
+
+      const url = `${process.env.VUE_APP_API}api/user/check`
+      this.$http.post(url).then(() => {
+        this.getOrders()
+      })
+    },
+    getOrders () {
+      // 帶入page這個參數
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/orders` // 參數預設值
+
+      this.$http
+        .get(url)
+        .then((res) => {
+          // console.log(res)
+          // console.log(res.data.orders)
+          this.orders = res.data.orders
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    openModal (order) {
+      this.tempOrder = { ...order }
+      this.$refs.orderModal.bsModal.show()
+    },
+    openDelOrderModal (order) {
+      this.tempOrder = { ...order }
+      console.log(this.tempOrder.title)
+      this.$refs.delOrderModal.bsModal.show()
+    }
+  },
+  mounted () {
+    this.checkLogin()
+  }
+}
+</script>
