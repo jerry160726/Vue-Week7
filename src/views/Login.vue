@@ -41,7 +41,7 @@
   </div>
 </template>
 
-<style lang="scss" src="../assets/stylesheets/login.scss">
+<style lang="scss" src="../assets/stylesheets/login.scss" scoped>
 </style>
 
 <script>
