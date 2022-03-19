@@ -21,9 +21,7 @@
           ></button>
         </div>
         <div class="modal-body">
-          是否刪除
-          <strong class="text-danger">{{ tempOrder.user.name }}</strong>
-          的訂單(刪除後將無法恢復)。
+          <strong class="text-danger"> 是否刪除此筆訂單(刪除後將無法恢復)。</strong>
           <!-- <strong class="text-danger">此筆訂單</strong> -->
         </div>
         <div class="modal-footer">

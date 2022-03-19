@@ -127,7 +127,7 @@ export default {
     },
     openDelOrderModal (order) {
       this.tempOrder = { ...order }
-      console.log(this.tempOrder.title)
+      console.log(this.tempOrder.user.name)
       this.$refs.delOrderModal.bsModal.show()
     }
   },
